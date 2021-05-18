@@ -1,3 +1,5 @@
+<?php session_start(); ?>
+
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -34,6 +36,10 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+  <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
 </head>
 
 <body>
@@ -42,59 +48,7 @@
   <header id="header">
 
     <!-- Primary Navigation -->
-    <nav class="nav navbar navbar-expand-lg navbar-light bg-light color-second-bg">
-      <a class="navbar-brand" href="#">PP<b>Shop</b></a>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
-        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>
-
-      <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav m-auto font-rubik">
-          <li class="nav-item active">
-            <a class="nav-link" href="#">商品一覧</a>
-          </li>
-          <li>
-            <span></span>
-          </li>
-          <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
-              aria-haspopup="true" aria-expanded="false">
-              商品カテゴリー
-            </a>
-            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-              <a class="dropdown-item" href="#">CPU</a>
-              <a class="dropdown-item" href="#">メモリー</a>
-              <a class="dropdown-item" href="#">グラフィックボード</a>
-              <a class="dropdown-item" href="#">マザーボード</a>
-              <a class="dropdown-item" href="#">HDD/SSD</a>
-              <a class="dropdown-item" href="#">電源</a>
-              <a class="dropdown-item" href="#">CPUファン/PCファン</a>
-              <a class="dropdown-item" href="#">PCケース</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Something else here</a>
-            </div>
-          </li>
-        </ul>
-        <form class="navbar-form form-inline">
-          <div class="input-group search-box">
-            <input type="text" id="search" class="form-control" placeholder="Search here...">
-            <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
-          </div>
-        </form>
-        <ul class="nav navbar-nav navbar-right">
-          <li class="nav-item active">
-            <a class="nav-link active" href="#"><span><i class="far fa-user-circle"></span></i></a>
-          </li>
-          <form action="#" class="font-size-14 font-rale m-auto">
-            <a href="#" class="py-2 rounded-pill color-primary-bg">
-              <span class="font-size-16 px-2 text-blue"><i class="fas fa-shopping-cart"></i></span>
-              <span class="px-3 py-2 rounded-pill text-light bg-info">0</span>
-            </a>
-          </form>
-        </ul>
-      </div>
-    </nav>
+    <?php require 'navbar.php'; ?>
 
 
     <!-- Primary Navigation -->
@@ -108,15 +62,10 @@
   <main id="main-site">
 
     <div class="signup-form">
-      <form action="" method="post">
+      <form action="signup_check.php" method="post">
         <h2>アカウント登録</h2>
-        　<div class="form-group">
-          <div class="row">
-            <div class="col-xs-6"><input type="text" class="form-control" name="last_name" placeholder="姓"
-                required="required"></div>
-            <div class="col-xs-6"><input type="text" class="form-control" name="first_name" placeholder="名"
-                required="required"></div>
-          </div>
+        <div class="form-group">
+            <input type="text" class="form-control" name="name" placeholder="フルネーム"required="required">
         </div>
         <div class="form-group">
           <input type="email" class="form-control" name="email" placeholder="Email" required="required">
@@ -124,10 +73,9 @@
         <div class="form-group">
           <input type="password" class="form-control" name="password" placeholder="パスワード" required="required">
         </div>
-        <div class="form-group">
-          <input type="password" class="form-control" name="confirm_password" placeholder="パスワード(確認用)"
-            required="required">
-        </div>
+        <!-- <div class="form-group">
+          <input type="password" class="form-control" name="re_password" placeholder="パスワード(再入力)" required="required">
+        </div> -->
         <div class="form-group">
           <label class="checkbox-inline"><input type="checkbox" required="required"><a href="#">利用規約
               </a>に同意する</label>
@@ -136,7 +84,7 @@
           <button type="submit" class="btn btn-info btn-lg btn-block">登録する</button>
         </div>
       </form>
-      <div class="text-center">Already have an account? <a href="#">Sign in</a></div>
+      <div class="text-center">Already have an account? <a href="login_input.php">Sign in</a></div>
     </div>
 
 

@@ -81,7 +81,7 @@ body {
     background: #31bfb1;
 }
 .navbar .navbar-right li:first-child a {
-    padding-right: 30px;
+    padding-right: 40px;
 }
 .navbar ul li i {
     font-size: 18px;
@@ -202,9 +202,7 @@ body {
 .navbar .checkbox-inline {
     font-size: 13px;
 }
-.navbar .navbar-right .dropdown-toggle::after {
-    display: none;
-}
+
 @media (min-width: 1200px){
     .form-inline .input-group {
         width: 300px;
@@ -228,9 +226,8 @@ body {
         display: block;
     }
 }
-@media (min-width: 768px){    
-    .navbar-nav>li>a {
-        padding-top: 20px;
-        padding-bottom: 15px;
-    }
+
+li > i {
+    height: 30px;
+    width: 30px;
 }

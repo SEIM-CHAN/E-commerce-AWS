@@ -1,3 +1,7 @@
+<?php session_start(); ?>
+<?php
+$category = $_GET['category'];
+?>
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -26,6 +30,10 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    
 </head>
 
 <body>
@@ -34,57 +42,7 @@
       <header id="header">
 
         <!-- Primary Navigation -->
-         <nav class="nav navbar navbar-expand-lg navbar-light bg-light color-second-bg">
-            <a class="navbar-brand" href="#">PP<b>Shop</b></a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-          
-            <div class="collapse navbar-collapse" id="navbarSupportedContent">
-              <ul class="navbar-nav m-auto font-rubik">
-                <li class="nav-item active">
-                  <a class="nav-link" href="#">商品一覧</a>
-                </li>
-                <li>
-                  <span></span>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    商品カテゴリー
-                  </a>
-                  <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                    <a class="dropdown-item" href="#">CPU</a>
-                    <a class="dropdown-item" href="#">メモリー</a>
-                    <a class="dropdown-item" href="#">グラフィックボード</a>
-                    <a class="dropdown-item" href="#">マザーボード</a>
-                    <a class="dropdown-item" href="#">HDD/SSD</a>
-                    <a class="dropdown-item" href="#">電源</a>
-                    <a class="dropdown-item" href="#">CPUファン/PCファン</a>
-                    <a class="dropdown-item" href="#">PCケース</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#">Something else here</a>
-                  </div>
-                </li> 
-              </ul>
-              <form class="navbar-form form-inline">
-                <div class="input-group search-box">								
-                  <input type="text" id="search" class="form-control" placeholder="Search here...">
-                  <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
-                </div>
-              </form>
-              <ul class="nav navbar-nav navbar-right">			
-                <li class="nav-item active">
-                  <a class="nav-link active" href="#"><span><i class="far fa-user-circle"></span></i></a>
-                </li>
-                <form action="#" class="font-size-14 font-rale m-auto">
-                  <a href="#" class="py-2 rounded-pill color-primary-bg">
-                    <span class="font-size-16 px-2 text-blue"><i class="fas fa-shopping-cart"></i></span>
-                    <span class="px-3 py-2 rounded-pill text-light bg-info">0</span>
-                  </a>
-                </form>
-              </ul>
-            </div>
-          </nav>
+        <?php require 'navbar.php'; ?>
 
          
         <!-- Primary Navigation -->
@@ -97,6 +55,54 @@
     <!-- start #main-site -->
       <main id="main-site">
 
+      <?php require 'nav-L.php' ?>
+      <?php
+
+if($category == 'cpu'){
+    echo '<h2>CPU</h2>';
+}else if($category == 'memory'){
+    echo '<h2>メモリー</h2>';
+}else if($category == 'gpu'){
+    echo '<h2>グラフィックボード</h2>';
+}else if($category == 'matherboard'){
+    echo '<h2>マザーボード</h2>';
+}else if($category == 'hddssd'){
+    echo '<h2>HDD/SSD</h2>';
+}else if($category == 5){
+    echo '<h2>電源</h2>';
+}else if($category == 6){
+    echo '<h2>CPUファン/PCファン</h2>';
+}else if($category == 'pccase'){
+    echo '<h2>PCケース</h2>';
+}
+
+?>
+<hr>
+
+<table>
+
+        <?php
+        
+		require 'db_connect.php';
+			$sql = "select * from product where item_category like :category";
+			$stm = $pdo->prepare($sql);
+			$stm->bindValue(':category',$category, PDO::PARAM_INT);
+			$stm->execute();
+			$result = $stm->fetchAll(PDO::FETCH_ASSOC);
+		foreach ($result as $row) {
+			$id = $row['item_id'];
+		?>
+			<tr>
+				<td><hr><img src="assets/products/<?= $row['item_category'] ?>/<?= $row['item_image'] ?>">
+				<a href="ProductDetails.php?item_id=<?= $id ?>"><?= $row['item_name'] ?></a>
+				<?= $row['item_price'] ?>円<hr></td>
+			</tr>
+			
+		<?php
+		}
+		?>
+	</table>
+	<hr>
         <!-- Owl-carousel -->
          
         <!-- Owl-carousel -->
@@ -104,8 +110,7 @@
         <!-- Top Sale -->
          
              <!-- owl carousel -->
-           </div>
-         </section>
+          
         <!-- Top Sale -->
        
       </main>
@@ -130,7 +135,8 @@
     
     <!-- Custo, javaScript -->
     <script src="./index.js"></script>
-
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <!-- Ajax jquery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
