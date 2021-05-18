@@ -1,7 +1,7 @@
 <?php
 session_start();
 session_regenerate_id(true);
-require 'db_connect.php';
+
 ?>
 
 <!DOCTYPE html>
@@ -67,32 +67,29 @@ require 'db_connect.php';
   <?php require 'nav-L.php' ?>
   
   <!-- start #nav-L -->
-  <main id="main-site">
-      <?php 
-       if(isset($_SESSION['user'])==false)
-       {
-           print '<h2 id="midasi">ようこそゲスト様</h2>';
-           print '<h3 id="kanin"><a href="login.php">会員ログイン</a></h3><br />';
-           print '<br />';
-       }
-       else
-       {
-           print '<h3>ようこそ</h3>';
-           print $_SESSION['user']['first_name'];
-           print ' 様　';
-           print '<br />';
-       }
-      
-      ?>
+
+<?php
+  require 'db_connect.php';
+  if(isset($_SESSION['user'])==false)
+{
+	print '<h2 id="midasi">ようこそゲスト様</h2>';
+	print '<h3 id="kanin"><a href="login.php">会員ログイン</a></h3><br />';
+	print '<br />';
+}
+else
+{
+	print '<h3>ようこそ</h3>';
+	echo $_SESSION['user']['name'], ' 様 ';
+}
+?>
   <ul>
-    <li><a href="favorit.php">お気に入り一覧</a></li>
+    <li><a href="favorite_show.php">お気に入り一覧</a></li>
     <li><a href="history.php">購入履歴</a></li>
-    <li><a href="logout_output.php">ログアウト</a></li>
+    <li><a href="logout_input.php">ログアウト</a></li>
     <li><a href="index.php">ホームへ</a></li>
     </ul>
-</div>    
+ </div>    
 
-  </main>
   
   <!-- start #main-site -->
  

@@ -62,7 +62,7 @@
               if(isset($_SESSION['user'])){ 
             ?>
             <li>
-              <a data-toggle="dropdown" href=".php">マイページ</a>
+              <a  href="mypage.php">マイページ</a>
             </li>
             <?php 
               }

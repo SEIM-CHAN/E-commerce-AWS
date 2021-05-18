@@ -1,7 +1,4 @@
 <?php session_start(); ?>
-<?php
-$item_id = $_GET['item_id'];
-?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -68,43 +65,34 @@ $item_id = $_GET['item_id'];
   <!-- start #nav-L -->
 
   <?php
-    
 	require 'db_connect.php';
-	$sql = "select * from product where item_id = :item_id";
+	//purchaseテーブル最終行 id+1を取得
+	$purchase_id = 1;
+	foreach($pdo->query('select max(id) from purchase')as $row){
+		$purchase_id = $row['max(id)'] + 1;
+	}
+	
+	$sql = "INSERT INTO purchase VALUES(:id,:user_id)";
 	$stm = $pdo->prepare($sql);
-	$stm->bindValue(':item_id',$_REQUEST['item_id'],PDO::PARAM_STR);
+	$stm->bindValue(':id',$purchase_id, PDO::PARAM_INT);
+	$stm->bindValue(':user_id', $_SESSION['user']['user_id'], PDO::PARAM_INT);
+	if($stm->execute()){
+		//SQL成功
+		//セッションに入っている商品の数だけpurchaase_detailに保存
+		foreach($_SESSION['product'] as $product_id => $product){
+			$sql = "INSERT INTO purchase_detail VALUES(:purchase_id, :product_id, :count)";
+			$stm = $pdo->prepare($sql);
+	$stm->bindValue(':purchase_id',$purchase_id, PDO::PARAM_INT);
+	$stm->bindValue(':product_id', $product_id, PDO::PARAM_INT);
+	$stm->bindValue(':count', $product['count'], PDO::PARAM_INT);
 	$stm->execute();
-	$result = $stm->fetchAll(PDO::FETCH_ASSOC);
-
-	foreach ($result as $row) {
-	?>
-		<p><img src="assets/products/<?= $row['item_category'] ?>/<?= $row['item_image'] ?>"></p>
-		<form action="cart_insert.php" method="post">
-			<p>商品番号：<?= $row['item_id'] ?></p>
-			<p>商品名：<?= $row['item_name'] ?></p>
-			<p>価格：<?= $row['item_price'] ?></p>
-			<p>個数：<select name="count">
-					<?php
-					for ($i = 1; $i <= 10; $i++) {
-					?>
-						<option value="<?= $i ?>"><?= $i ?></option>
-					<?php
-					}
-					?>
-				</select></p>
-			<input type="hidden" name="item_id" value="<?= $row['item_id'] ?>">
-			<input type="hidden" name="item_name" value="<?= $row['item_name'] ?>">
-			<input type="hidden" name="item_price" value="<?= $row['item_price'] ?>">
-			<p><input type="submit" value="カートに追加"></p>
-		</form>
-    <p><a href="favorite_insert.php?id=<?= $row['item_id'] ?>">お気に入りに追加</a></p>
-	<?php
+		}
+		unset($_SESSION['product']);
+		echo '購入手続きが完了しました。ありがとうございます。';
+	}else{
+		echo '購入手続き中にエラーが発生しました。申し訳ございません。';
 	}
 	?>
-  <!-- start #main-site -->
-  
- 
-  <!-- start #main-site -->
 
   <!-- start #footer -->
   <footer>

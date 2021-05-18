@@ -36,7 +36,7 @@
 
 -- INSERT INTO `product` (`item_id`, `item_brand`, `item_name`, `item_category`, `item_price`, `item_image`, `item_register`) VALUES
 -- (1, 'ASUS', 'RTX2060', 'gpu', 20000.00, 'RTX3060-01.jpg', '2021-05-12 00:00:00'),
--- (2, 'Intel', 'Core i5-11400F', 'cpu', 21980.00, 'inteli5-01.jpg', NULL);
+-- (2, 'ASUS', 'Core i5-11400F', 'gpu', 21980.00, 'RTX-01.jpg', NULL);
 
 -- --
 -- -- ダンプしたテーブルのインデックス
@@ -59,14 +59,15 @@
 --   MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 
-INSERT INTO `product` (`item_brand`, `item_name`, `item_category`, `item_price`, `item_image`) VALUES
-('Intel', 'Core i5-11400F', 'cpu', 21980.00, 'inteli5-10.jpg');
-('Intel', 'Core i5-11400', 'cpu', 25800.00, 'inteli5-10.jpg');
-('Intel', 'Core i5-11600K', 'cpu', 37800.00, 'inteli5-10.jpg');
-('Intel', 'Core i5-10400', 'cpu', 19308.00, 'inteli5-03.jpg');
-('Intel', 'Core i5-10600K', 'cpu', 24981.00, 'inteli5-11.jpg');
-('Intel', 'Core i7-11700', 'cpu', 45980.00, 'inteli7-04.jpg');
-('Intel', 'Core i7-11700F', 'cpu', 41980.00, 'inteli7-04.jpg');
-('Intel', 'Core i7-11700F', 'cpu', 41980.00, 'inteli7-04.jpg');
-('Intel', 'Core i7-10700', 'cpu', 33980.00, 'inteli7-01.jpg');
-('ASUS', 'RTX2060', 'gpu', 20000.00, 'RTX3060-01.jpg'),
+-- INSERT INTO `product` (`item_brand`, `item_name`, `item_category`, `item_price`, `item_image`) VALUES
+-- ('ASUS', 'GeForce RTX 3060 GAMING X 12G', 'gpu', 84700.00, 'RTX3060-01.jpg');
+-- ('ASUS', 'TUF-RTX3060-O12G-GAMING', 'gpu', 74800.00, 'RTX3060-02.jpg');
+-- ('ASUS', 'GV-N3060GAMING OC-12GD', 'gpu', 74800.00, 'RTX3060-04.jpg');
+-- ('ASUS', 'ZTRTX3090TRINITY-24GBGDR6/ZT-A30900D-10P', 'gpu', 335500.00, 'RTX3090-01.jpg');
+-- ('ASUS', 'ROG-STRIX-RTX3090-O24G-GAMING', 'gpu', 322800.00, 'RTX3090-02.jpg');
+-- ('ASUS', 'GV-N3090GAMING OC-24GD', 'gpu', 269500.00, 'RTX-04.jpg');
+-- ('ASUS', 'Core i7-11700F', 'gpu', 41980.00, 'RTX-04.jpg');
+-- ('ASUS', 'Core i7-10700', 'gpu', 33980.00, 'RTX-01.jpg');
+-- ('ASUS', 'Core i7-11700K', 'gpu', 56980.00, 'RTX-01.jpg');
+-- ('ASUS', 'Core i9-11900', 'gpu', 60980.00, 'RTX-01.jpg');
+

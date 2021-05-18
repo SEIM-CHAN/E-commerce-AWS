@@ -18,11 +18,10 @@ unset($_SESSION['user']);
 
 		
 		$_SESSION['user'] = [
-			'user_id' => $row['user_id'], 'first_name' => $row['first_name'],
-			'last_name' => $row['last_name'],
+			'user_id' => $row['user_id'], 
+      'name' => $row['name'],
 			'email' => $row['email'],
 			'password' => $row['password'],
-			'register_date' => $row['register_date']
 		];
 	}
 ?>
@@ -83,7 +82,7 @@ unset($_SESSION['user']);
       <?php require 'navber.php'; ?>
 	<?php
 	if (isset($_SESSION['user'])) {
-		echo 'ログインしました。','ようこそ', $_SESSION['user']['first_name'], 'さん。',
+		echo 'ログインしました。','ようこそ', $_SESSION['user']['name'], 'さん。',
 		'<br><a href="mypage.php">マイページ</a>'
 		;
 	} else {

@@ -67,7 +67,7 @@
   
   <!-- start #main-site -->
   <?php
-	$id = $_REQUEST['item_id'];
+	$id = $_REQUEST['id'];
 	if (!isset($_SESSION['product'])) {
 		$_SESSION['product'] = [];
 	}

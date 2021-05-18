@@ -56,10 +56,9 @@ unset($_SESSION['user']);
     <!-- start #main-site -->
       <main id="main-site">
 
-      <?php
-		require 'menu.php';
-		echo 'ログアウトしました。';
-	?>
+    <?php
+		  echo 'ログアウトしました。';
+	  ?>
        
       </main>
     <!-- start #main-site -->
