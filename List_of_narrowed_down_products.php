@@ -101,9 +101,6 @@ $category = $_GET['category'];
 		}
 		?>
 
-<div class="grid">
-  <div class="module">1</div>
-</div>
 </table>
 	<hr>
         <!-- Owl-carousel -->

@@ -1,137 +1,72 @@
--- phpMyAdmin SQL Dump
--- version 4.9.2
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Apr 20, 2020 at 11:01 AM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.1.33
+-- -- phpMyAdmin SQL Dump
+-- -- version 4.9.7
+-- -- https://www.phpmyadmin.net/
+-- --
+-- -- ホスト: localhost:3306
+-- -- 生成日時: 2021 年 5 月 18 日 14:30
+-- -- サーバのバージョン： 5.7.32
+-- -- PHP のバージョン: 7.4.12
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
-START TRANSACTION;
-SET time_zone = "+00:00";
+-- SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+-- SET time_zone = "+00:00";
+
+-- --
+-- -- データベース: `shop`
+-- --
+
+-- -- --------------------------------------------------------
+
+-- --
+-- -- テーブルの構造 `product`
+-- --
+
+-- CREATE TABLE `product` (
+--   `item_id` int(11) NOT NULL,
+--   `item_brand` varchar(200) NOT NULL,
+--   `item_name` varchar(255) NOT NULL,
+--   `item_category` varchar(255) NOT NULL,
+--   `item_price` double(10,2) NOT NULL,
+--   `item_image` varchar(255) NOT NULL,
+--   `item_register` datetime DEFAULT NULL
+-- ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --
+-- -- テーブルのデータのダンプ `product`
+-- --
+
+-- INSERT INTO `product` (`item_id`, `item_brand`, `item_name`, `item_category`, `item_price`, `item_image`, `item_register`) VALUES
+-- (1, 'ASUS', 'RTX2060', 'gpu', 20000.00, 'RTX3060-01.jpg', '2021-05-12 00:00:00'),
+-- (2, 'Intel', 'Core i5-11400F', 'cpu', 21980.00, 'inteli5-01.jpg', NULL);
+
+-- --
+-- -- ダンプしたテーブルのインデックス
+-- --
+
+-- --
+-- -- テーブルのインデックス `product`
+-- --
+-- ALTER TABLE `product`
+--   ADD PRIMARY KEY (`item_id`);
+
+-- --
+-- -- ダンプしたテーブルの AUTO_INCREMENT
+-- --
+
+-- --
+-- -- テーブルの AUTO_INCREMENT `product`
+-- --
+-- ALTER TABLE `product`
+--   MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `shopee`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `cart`
---
-
-CREATE TABLE `cart` (
-  `cart_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `product`
---
-
-CREATE TABLE `product` (
-  `item_id` int(11) NOT NULL,
-  `item_brand` varchar(200) NOT NULL,
-  `item_name` varchar(255) NOT NULL,
-  `item_price` double(10,2) NOT NULL,
-  `item_image` varchar(255) NOT NULL,
-  `item_register` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `product`
---
-
-
--- --------------------------------------------------------
-
---
--- Table structure for table `user`
---
-
-CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
-  `first_name` varchar(100) NOT NULL,
-  `last_name` varchar(100) NOT NULL,
-  `register_date` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `user`
---
-
-INSERT INTO `user` (`user_id`, `first_name`, `last_name`, `register_date`) VALUES
-(1, 'Daily', 'Tuition', '2020-03-28 13:07:17'),
-(2, 'Akshay', 'Kashyap', '2020-03-28 13:07:17');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `wishlist`
---
-
-CREATE TABLE `wishlist` (
-  `cart_id` int(11) NOT NULL,
-  `user_id` int(11) NOT NULL,
-  `item_id` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `cart`
---
-ALTER TABLE `cart`
-  ADD PRIMARY KEY (`cart_id`);
-
---
--- Indexes for table `product`
---
-ALTER TABLE `product`
-  ADD PRIMARY KEY (`item_id`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
-
---
--- AUTO_INCREMENT for dumped tables
---
-
---
--- AUTO_INCREMENT for table `cart`
---
-ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT for table `product`
---
-ALTER TABLE `product`
-  MODIFY `item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
-
---
--- AUTO_INCREMENT for table `user`
---
-ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-COMMIT;
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+INSERT INTO `product` (`item_brand`, `item_name`, `item_category`, `item_price`, `item_image`) VALUES
+('Intel', 'Core i5-11400F', 'cpu', 21980.00, 'inteli5-10.jpg');
+('Intel', 'Core i5-11400', 'cpu', 25800.00, 'inteli5-10.jpg');
+('Intel', 'Core i5-11600K', 'cpu', 37800.00, 'inteli5-10.jpg');
+('Intel', 'Core i5-10400', 'cpu', 19308.00, 'inteli5-03.jpg');
+('Intel', 'Core i5-10600K', 'cpu', 24981.00, 'inteli5-11.jpg');
+('Intel', 'Core i7-11700', 'cpu', 45980.00, 'inteli7-04.jpg');
+('Intel', 'Core i7-11700F', 'cpu', 41980.00, 'inteli7-04.jpg');
+('Intel', 'Core i7-11700F', 'cpu', 41980.00, 'inteli7-04.jpg');
+('Intel', 'Core i7-10700', 'cpu', 33980.00, 'inteli7-01.jpg');
+('ASUS', 'RTX2060', 'gpu', 20000.00, 'RTX3060-01.jpg'),

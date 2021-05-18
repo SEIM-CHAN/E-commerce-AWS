@@ -1,32 +1,7 @@
 <?php session_start(); ?>
 <?php
-unset($_SESSION['user']);
-	//MySQLデータベースに接続する
-	require 'db_connect.php';
-	
-	$sql = "select * from user where email = :email and password = :password";
-	
-	$stm = $pdo->prepare($sql);
-	
-	$stm->bindValue(':email',$_POST['email'],PDO::PARAM_STR);
-	$stm->bindValue(':password',$_POST['password'],PDO::PARAM_STR);
-	$stm->execute();
-	$result = $stm->fetchAll(PDO::FETCH_ASSOC);
-	foreach ($result as $row) {
-
-
-
-		
-		$_SESSION['user'] = [
-			'user_id' => $row['user_id'], 'first_name' => $row['first_name'],
-			'last_name' => $row['last_name'],
-			'email' => $row['email'],
-			'password' => $row['password'],
-			'register_date' => $row['register_date']
-		];
-	}
+$category = $_GET['category'];
 ?>
-
 <!DOCTYPE html>
 <html lang="ja">
 
@@ -78,50 +53,48 @@ unset($_SESSION['user']);
     <!-- start #header -->
     
     <!-- start #main-site -->
-      <main id="main-site">
+      <?php require 'nav-L.php' ?>
 
-      <?php require 'navber.php'; ?>
-	<?php
-	if (isset($_SESSION['user'])) {
-		echo 'ログインしました。','ようこそ', $_SESSION['user']['first_name'], 'さん。',
-		'<br><a href="mypage.php">マイページ</a>'
-		;
-	} else {
-		echo '
-		<main id="main-site">
+<hr>
 
-    <div class="signup-form">
-      <form action="login_output.php" method="post">
-		<h2>ログイン</h2>
-		<p>Emailまたはパスワードが違います。</p>
-        <div class="form-group">
-          <input type="email" class="form-control" name="email" placeholder="Email" required="required">
-        </div>
-        <div class="form-group">
-          <input type="password" class="form-control" name="password" placeholder="パスワード" required="required">
-        </div>
+<table>
+
+        <?php
         
-        <div class="form-group">
-          <button type="submit" class="btn btn-info btn-lg btn-block">Sign in</button>
-        </div>
-      </form>
-      <div class="text-center"><a href="CreateAccount.php">アカウントを作成</a></div>
-    </div>
+		require 'db_connect.php';
+			$sql = "select * from product where item_id = :item_id";
+			$stm = $pdo->prepare($sql);
+			$stm->bindValue(':item_id',$_REQUEST['item_id'], PDO::PARAM_STR);
+			$stm->execute();
+			$result = $stm->fetchAll(PDO::FETCH_ASSOC);
+		foreach ($result as $row) {
+			$id = $row['item_id'];
+		?>
+			<tr>
+				<td><hr><img src="assets/products/<?= $row['item_category'] ?>/<?= $row['item_image'] ?>">
+				<a href="ProductDetails.php?item_id=<?= $id ?>"><?= $row['item_name'] ?></a>
+				<?= $row['item_price'] ?>円<hr></td>
+			</tr>
+			
+		<?php
+		}
+		?>
 
+<div class="grid">
+  <div class="module">1</div>
+</div>
+</table>
+	<hr>
+        <!-- Owl-carousel -->
+         
+        <!-- Owl-carousel -->
 
-
-
-
-
-    <!-- Top Sale -->
-
-  </main>
-		
-		';
-	}
-	?>
+        <!-- Top Sale -->
+         
+             <!-- owl carousel -->
+          
+        <!-- Top Sale -->
        
-      </main>
     <!-- start #main-site -->
 
     <!-- start #footer -->
@@ -149,7 +122,6 @@ unset($_SESSION['user']);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 
 </body>
-
 
 </html>
 

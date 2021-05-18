@@ -12,7 +12,7 @@
     <!-- Collection of nav links, forms, and other content for toggling -->
     <div id="navbarCollapse" class="collapse navbar-collapse">
         <ul class="nav navbar-nav">
-            <li><a href="">商品一覧</a></li>
+            <li><a href="product_list.php">商品一覧</a></li>
             <li class="dropdown">
                 <a data-toggle="dropdown" class="dropdown-toggle" href="">商品カテゴリー</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -72,7 +72,7 @@
               if(isset($_SESSION['user'])){  
             ?>
             <li>   
-              <a href="mycart.php">
+              <a href="cart_show.php">
               <i class="fas fa-shopping-cart color-primary fa-spin py-0"></i>カート
               </a>
             </li>

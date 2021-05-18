@@ -1,7 +1,4 @@
 <?php session_start(); ?>
-<?php
-$item_id = $_GET['item_id'];
-?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -67,41 +64,28 @@ $item_id = $_GET['item_id'];
   
   <!-- start #nav-L -->
 
-  <?php
-    
-	require 'db_connect.php';
-	$sql = "select * from product where item_id = :item_id";
-	$stm = $pdo->prepare($sql);
-	$stm->bindValue(':item_id',$_REQUEST['item_id'],PDO::PARAM_STR);
-	$stm->execute();
-	$result = $stm->fetchAll(PDO::FETCH_ASSOC);
-
-	foreach ($result as $row) {
-	?>
-		<p><img src="assets/products/<?= $row['item_category'] ?>/<?= $row['item_image'] ?>"></p>
-		<form action="cart_insert.php" method="post">
-			<p>商品番号：<?= $row['item_id'] ?></p>
-			<p>商品名：<?= $row['item_name'] ?></p>
-			<p>価格：<?= $row['item_price'] ?></p>
-			<p>個数：<select name="count">
-					<?php
-					for ($i = 1; $i <= 10; $i++) {
-					?>
-						<option value="<?= $i ?>"><?= $i ?></option>
-					<?php
-					}
-					?>
-				</select></p>
-			<input type="hidden" name="item_id" value="<?= $row['item_id'] ?>">
-			<input type="hidden" name="item_name" value="<?= $row['item_name'] ?>">
-			<input type="hidden" name="item_price" value="<?= $row['item_price'] ?>">
-			<p><input type="submit" value="カートに追加"></p>
-		</form>
-	<?php
-	}
-	?>
-  <!-- start #main-site -->
   
+  <!-- start #main-site -->
+  <?php
+	$id = $_REQUEST['item_id'];
+	if (!isset($_SESSION['product'])) {
+		$_SESSION['product'] = [];
+	}
+	$count = 0;
+	if (isset($_SESSION['product'][$id])) {
+		$count = $_SESSION['product'][$id]['count'];
+	}
+	$_SESSION['product'][$id] = [
+		'item_name' => $_REQUEST['item_name'],
+		'item_price' => $_REQUEST['item_price'],
+		'count' => $count + $_REQUEST['count']
+	];
+	?>
+	<p>カートに商品を追加しました。</p>
+	<hr>
+	<?php
+	require 'cart.php';
+	?>
  
   <!-- start #main-site -->
 
