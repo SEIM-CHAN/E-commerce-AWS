@@ -1,4 +1,8 @@
-<?php session_start(); ?>
+<?php
+session_start();
+session_regenerate_id(true);
+require 'db_connect.php';
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -57,43 +61,42 @@
 
   </header>
   <!-- start #header -->
+
+  
+  <!-- start #nav-L -->
   <?php require 'nav-L.php' ?>
+  
+  <!-- start #nav-L -->
+  <main id="main-site">
+      <?php 
+       if(isset($_SESSION['user'])==false)
+       {
+           print '<h2 id="midasi">ようこそゲスト様</h2>';
+           print '<h3 id="kanin"><a href="login.php">会員ログイン</a></h3><br />';
+           print '<br />';
+       }
+       else
+       {
+           print '<h3>ようこそ</h3>';
+           print $_SESSION['user']['first_name'];
+           print ' 様　';
+           print '<br />';
+       }
+      
+      ?>
+  <ul>
+    <li><a href="favorit.php">お気に入り一覧</a></li>
+    <li><a href="history.php">購入履歴</a></li>
+    <li><a href="logout_output.php">ログアウト</a></li>
+    <li><a href="index.php">ホームへ</a></li>
+    </ul>
+</div>    
+
+  </main>
+  
   <!-- start #main-site -->
-  
-    <div class="signup-form">
-      <form action="signup_check.php" method="post">
-        <h2>アカウント登録</h2>
-        <div class="form-group">
-            <input type="text" class="form-control" name="name" placeholder="フルネーム"required="required">
-        </div>
-        <div class="form-group">
-          <input type="email" class="form-control" name="email" placeholder="Email" required="required">
-        </div>
-        <div class="form-group">
-          <input type="password" class="form-control" name="password" placeholder="パスワード" required="required">
-        </div>
-        <!-- <div class="form-group">
-          <input type="password" class="form-control" name="re_password" placeholder="パスワード(再入力)" required="required">
-        </div> -->
-        <div class="form-group">
-          <label class="checkbox-inline"><input type="checkbox" required="required"><a href="#">利用規約
-              </a>に同意する</label>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-info btn-lg btn-block">登録する</button>
-        </div>
-      </form>
-      <div class="text-center">Already have an account? <a href="login_input.php" style="color:aqua;">Sign in</a></div>
-    </div>
-
-
-
-
-
-
-    <!-- Top Sale -->
-
-  
+ 
+ 
   <!-- start #main-site -->
 
   <!-- start #footer -->
@@ -125,7 +128,8 @@
 
   <!-- Custo, javaScript -->
   <script src="./index.js"></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Ajax jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 

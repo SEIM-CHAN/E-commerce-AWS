@@ -53,30 +53,29 @@ $category = $_GET['category'];
     <!-- start #header -->
     
     <!-- start #main-site -->
-      <main id="main-site">
-
       <?php require 'nav-L.php' ?>
-      <?php
 
-if($category == 'cpu'){
-    echo '<h2>CPU</h2>';
-}else if($category == 'memory'){
-    echo '<h2>メモリー</h2>';
-}else if($category == 'gpu'){
-    echo '<h2>グラフィックボード</h2>';
-}else if($category == 'matherboard'){
-    echo '<h2>マザーボード</h2>';
-}else if($category == 'hddssd'){
-    echo '<h2>HDD/SSD</h2>';
-}else if($category == 5){
-    echo '<h2>電源</h2>';
-}else if($category == 6){
-    echo '<h2>CPUファン/PCファン</h2>';
-}else if($category == 'pccase'){
-    echo '<h2>PCケース</h2>';
-}
+    <?php
 
-?>
+        if($category == 'cpu'){
+            echo '<h2>CPU</h2>';
+        }else if($category == 'memory'){
+            echo '<h2>メモリー</h2>';
+        }else if($category == 'gpu'){
+            echo '<h2>グラフィックボード</h2>';
+        }else if($category == 'matherboard'){
+            echo '<h2>マザーボード</h2>';
+        }else if($category == 'hddssd'){
+            echo '<h2>HDD/SSD</h2>';
+        }else if($category == 5){
+            echo '<h2>電源</h2>';
+        }else if($category == 6){
+            echo '<h2>CPUファン/PCファン</h2>';
+        }else if($category == 'pccase'){
+            echo '<h2>PCケース</h2>';
+        }
+
+    ?>
 <hr>
 
 <table>
@@ -101,7 +100,11 @@ if($category == 'cpu'){
 		<?php
 		}
 		?>
-	</table>
+
+<div class="grid">
+  <div class="module">1</div>
+</div>
+</table>
 	<hr>
         <!-- Owl-carousel -->
          
@@ -113,7 +116,6 @@ if($category == 'cpu'){
           
         <!-- Top Sale -->
        
-      </main>
     <!-- start #main-site -->
 
     <!-- start #footer -->

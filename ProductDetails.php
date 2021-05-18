@@ -1,4 +1,7 @@
 <?php session_start(); ?>
+<?php
+$item_id = $_GET['item_id'];
+?>
 
 <!DOCTYPE html>
 <html lang="ja">
@@ -57,43 +60,49 @@
 
   </header>
   <!-- start #header -->
+
+  
+  <!-- start #nav-L -->
   <?php require 'nav-L.php' ?>
+  
+  <!-- start #nav-L -->
+
+  <?php
+    
+	require 'db_connect.php';
+	$sql = "select * from product where item_id = :item_id";
+	$stm = $pdo->prepare($sql);
+	$stm->bindValue(':item_id',$_REQUEST['item_id'],PDO::PARAM_STR);
+	$stm->execute();
+	$result = $stm->fetchAll(PDO::FETCH_ASSOC);
+
+	foreach ($result as $row) {
+	?>
+		<p><img src="assets/products/<?= $row['item_category'] ?>/<?= $row['item_image'] ?>"></p>
+		<form action="cart.php" method="post">
+			<p>商品番号：<?= $row['item_id'] ?></p>
+			<p>商品名：<?= $row['item_name'] ?></p>
+			<p>価格：<?= $row['item_price'] ?></p>
+			<p>個数：<select name="count">
+					<?php
+					for ($i = 1; $i <= 10; $i++) {
+					?>
+						<option value="<?= $i ?>"><?= $i ?></option>
+					<?php
+					}
+					?>
+				</select></p>
+			<input type="hidden" name="item_id" value="<?= $row['item_id'] ?>">
+			<input type="hidden" name="item_name" value="<?= $row['item_name'] ?>">
+			<input type="hidden" name="item_price" value="<?= $row['item_price'] ?>">
+			<p><input type="submit" value="カートに追加"></p>
+		</form>
+	<?php
+	}
+	?>
   <!-- start #main-site -->
   
-    <div class="signup-form">
-      <form action="signup_check.php" method="post">
-        <h2>アカウント登録</h2>
-        <div class="form-group">
-            <input type="text" class="form-control" name="name" placeholder="フルネーム"required="required">
-        </div>
-        <div class="form-group">
-          <input type="email" class="form-control" name="email" placeholder="Email" required="required">
-        </div>
-        <div class="form-group">
-          <input type="password" class="form-control" name="password" placeholder="パスワード" required="required">
-        </div>
-        <!-- <div class="form-group">
-          <input type="password" class="form-control" name="re_password" placeholder="パスワード(再入力)" required="required">
-        </div> -->
-        <div class="form-group">
-          <label class="checkbox-inline"><input type="checkbox" required="required"><a href="#">利用規約
-              </a>に同意する</label>
-        </div>
-        <div class="form-group">
-          <button type="submit" class="btn btn-info btn-lg btn-block">登録する</button>
-        </div>
-      </form>
-      <div class="text-center">Already have an account? <a href="login_input.php" style="color:aqua;">Sign in</a></div>
-    </div>
-
-
-
-
-
-
-    <!-- Top Sale -->
-
-  
+ 
   <!-- start #main-site -->
 
   <!-- start #footer -->
@@ -125,7 +134,8 @@
 
   <!-- Custo, javaScript -->
   <script src="./index.js"></script>
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
   <!-- Ajax jquery -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 

@@ -51,7 +51,9 @@
     <!-- start #header -->
     
     <!-- start #main-site -->
-      <main id="main-site">
+
+    
+      <?php require 'nav-L.php' ?>
 
       <div class="signup-form">
       <form action="login_output.php" method="post">
@@ -70,7 +72,7 @@
       <div class="text-center"><a href="login_input.php">アカウントを作成</a></div>
     </div>
        
-      </main>
+    
     <!-- start #main-site -->
 
     <!-- start #footer -->

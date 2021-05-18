@@ -40,7 +40,7 @@
               if(!(isset($_SESSION['user']))){ 
             ?>
             <li>
-                <a data-toggle="dropdown" class="dropdown-toggle" href="login_input.php">Login</a>
+                <a href="login_input.php">Login</a>
             </li>
             <?php 
               }
@@ -50,8 +50,8 @@
               if(!(isset($_SESSION['user']))){ 
             ?>
             <li>
-                <a href="signup.php" data-toggle="dropdown"
-                    class="btn btn-primary dropdown-toggle mt-3 mb-1">Sign up</a>
+                <a href="signup.php" 
+                    class="btn btn-primary mt-3 mb-1">Sign up</a>
             </li>
             <?php 
               }
@@ -87,4 +87,3 @@
 
 
 <!-- Primary Navigation -->
-
