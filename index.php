@@ -70,10 +70,10 @@
   <?php require 'main.php'; ?>
  
   <!-- start #main-site -->
-
+　
   <!-- start #footer -->
   <footer>
-
+    <?php require 'footer.php'; ?>
   </footer>
   <!-- start #footer -->
 
