@@ -614,6 +614,7 @@
       border-collapse: collapse;
       border: 1px solid #ccc;
       line-height: 1.5;
+      color: #636363;
     }
     
     table.type06 th {
@@ -651,7 +652,7 @@
       box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
     }
     
-    #gallary ui li:nth-child(3n) {
+    #gallary ul li:nth-child(3n) {
       margin-right: 0;
     }
     

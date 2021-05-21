@@ -492,7 +492,7 @@
       /*IE6のマージン算出のバグ対策*/
       float: left;
       /*サブメニューのカラムを左寄せにする*/
-      margin-top: 30px;
+      margin-top: 20px;
       margin-right: 30px;
       margin-bottom: 30px;
     }
@@ -552,10 +552,10 @@
     }
     
     #main-site {
-      width: 1100px;
+      width: 1200px;
       float: left;
-      margin: 30px 0;
-      margin-left: 30px;
+      margin-top: auto;
+      margin-left: 10px;
     }
     
     .slide {
