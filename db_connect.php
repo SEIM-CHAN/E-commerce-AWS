@@ -5,7 +5,7 @@
   // 利用するデータベース
   $dbName = 'shop';
   // MySQLサーバ
-  $host = 'localhost';
+  $host = 'db-mysql.ckarkin4dqrj.us-east-1.rds.amazonaws.com';
   // MySQLのDSN文字列
   $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
 
