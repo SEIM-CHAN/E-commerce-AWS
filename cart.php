@@ -4,7 +4,6 @@ if (!empty($_SESSION['product'])) {
 	<table class="type06">
 	 <thead class="thead-dark">
 	   <tr>
-		<th>番号</th>
         <th>商品名</th>
         <th>価格</th>
 		<th>数量</th>
@@ -18,7 +17,6 @@ if (!empty($_SESSION['product'])) {
 		?>  
 		   <tbody>
 			<tr>
-			 <th scope="row"><?= $id ?></th>
 			 <td><a href="ProductDetails.php?id=<?= $id ?>"><?= $product['item_name'] ?></a></td>
 			 <td><?= $product['item_price'] ?>円</td>
 			 <td><?= $product['count'] ?></td>
@@ -34,7 +32,6 @@ if (!empty($_SESSION['product'])) {
 		?>
 		    <tr>
 		     <td>合計</td>
-		     <td></td>
 			 <td></td>
 		     <td></td>
 		     <td><?= $total ?>円</td>

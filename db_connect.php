@@ -5,7 +5,7 @@
   // 利用するデータベース
   $dbName = 'shop';
   // MySQLサーバ
-  $host = 'localhost';
+  $host = 'localhost';  //エンドポイント名を入れる
   // MySQLのDSN文字列
   $dsn = "mysql:host={$host};dbname={$dbName};charset=utf8";
 
