@@ -669,6 +669,13 @@ session_regenerate_id(true);
     /*# sourceMappingURL=style.css.map */
 
   </style>
+
+  <style>
+    ol {
+  /*2px 水色 破線を指定*/
+     border: 2px skyblue dashed; 
+  }
+  </style>
 </head>
 
 <body>
@@ -703,17 +710,16 @@ session_regenerate_id(true);
 }
 else
 {
-	print '<h3>ようこそ</h3>';
+	echo '<h3>ようこそ</h3>';
 	echo $_SESSION['user']['name'], ' 様 ';
 }
 ?>
-  <ul>
-    <li><a href="favorite_show.php">お気に入り一覧</a></li>
-    <li><a href="history.php">購入履歴</a></li>
-    <li><a href="logout_input.php">ログアウト</a></li>
-    <li><a href="index.php">ホームへ</a></li>
-    </ul>
- </div>    
+  　<ul>
+    　<li><a href="favorite_show.php">お気に入り一覧</a></li>
+    　<li><a href="history.php">購入履歴</a></li>
+    　<li><a href="logout_input.php">ログアウト</a></li>
+    　<li><a href="index.php">ホームへ</a></li>
+    </ul>   
 
   
   <!-- start #main-site -->
