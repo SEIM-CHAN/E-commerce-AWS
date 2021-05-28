@@ -39,7 +39,12 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-
+  
+  <style>
+    div#main-site {
+      color: black;
+    }
+  </style>
 </head>
 
 <body>
@@ -56,35 +61,37 @@
    </header>
   <!-- start #header -->
 
-  
   <!-- start #nav-L -->
   <?php require 'nav-L.php' ?>
   
   <!-- start #nav-L -->
 
   <?php require 'menu.php'; ?>
-
-<?php
-if (!isset($_SESSION['user'])) {
-  echo "購入手続きを行うにはログインしてください。";
-} elseif (!empty($_SESSION['product'])) { 
-?>
-  <table>
-    <tr>
-      <td>お名前：</td>
-      <td><?= $_SESSION['user']['name'] ?></td>
-    </tr>
-  </table>
-  <hr>
-
-  <?php require 'cart.php';?>
-  <hr>
-
-  <p>内容をご確認いただき、ご講習を確定してください。</p>
-  <a href="purchase_output.php">購入を確定する</a>
-<?php
-}
-?>
+  <h1>sssbdfhfhfd</h1>
+  <div id="main-site">
+  <h1>購入手続き</h1>
+    <?php
+    if (!isset($_SESSION['user'])) {
+      echo "購入手続きを行うにはログインしてください。";
+    } elseif (!empty($_SESSION['product'])) { 
+    ?>
+      <table>
+        <tr>
+          <td>お名前：</td>
+          <td><?= $_SESSION['user']['name'] ?></td>
+        </tr>
+      </table>
+      <hr>
+    
+      <?php require 'cart.php';?>
+      <hr>
+    
+      <p>内容をご確認いただき、ご講習を確定してください。</p>
+      <a href="buy_output.php">購入を確定する</a>
+    <?php
+    }
+    ?>
+  </div>
   <!-- start #footer -->
 
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

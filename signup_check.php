@@ -654,6 +654,9 @@ include "db_connect.php";
     #B {
       width: 200px;
     }
+    #main-site {
+      color: #242222;
+    }
     
     /*# sourceMappingURL=style.css.map */
 
@@ -675,29 +678,29 @@ include "db_connect.php";
 
       </header>
     <!-- start #header -->
-    
+      <?php require 'nav-L.php' ?>
     <!-- start #main-site -->
-      <main id="main-site">
+    <main id="main-site">
 
 	  <?php
 		//MySQLデータベースに接続する
-		require 'db_connect.php';
-		//SQL文を作成する
-		$sql = "INSERT INTO user VALUES(null, :name, :email, :password)";
-		//プリペアードステートメントを作成
-		$stm = $pdo ->prepare($sql);
-		$stm->bindValue(':name', $_POST['name'], PDO::PARAM_STR);  //実際には入力されたデータをエスケープやtrimする
-		$stm->bindValue(':email', $_POST['email'], PDO::PARAM_STR);  //実際には入力されたデータをエスケープやtrimする 
-		$stm->bindValue(':password', $_POST['password'], PDO::PARAM_STR);  //実際には入力されたデータをエスケープやtrimする
-		//SQL文を実行
-		$stm->execute();
-		echo "お客様情報を登録しました。";
+		  require 'db_connect.php';
+		  //SQL文を作成する
+		  $sql = "INSERT INTO user VALUES(null, :name, :email, :password)";
+		  //プリペアードステートメントを作成
+		  $stm = $pdo ->prepare($sql);
+		  $stm->bindValue(':name', $_POST['name'], PDO::PARAM_STR);  //実際には入力されたデータをエスケープやtrimする
+		  $stm->bindValue(':email', $_POST['email'], PDO::PARAM_STR);  //実際には入力されたデータをエスケープやtrimする 
+		  $stm->bindValue(':password', $_POST['password'], PDO::PARAM_STR);  //実際には入力されたデータをエスケープやtrimする
+		  //SQL文を実行
+		  $stm->execute();
+		  echo "お客様情報を登録しました。";
     
 
 		
-	?>
+	  ?>
        
-      </main>
+    </main>
     <!-- start #main-site -->
 
     <!-- start #footer -->

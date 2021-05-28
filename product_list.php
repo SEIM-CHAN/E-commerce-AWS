@@ -59,7 +59,7 @@ $category = $_GET['category'];
 
 <table>
 
-        <?php
+    <?php
         
 		require 'db_connect.php';
 			$sql = "select * from product where item_id = :item_id";

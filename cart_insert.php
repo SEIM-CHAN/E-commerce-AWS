@@ -664,6 +664,12 @@
     /*# sourceMappingURL=style.css.map */
 
   </style>
+
+  <style>
+    #main-site {
+      color: #242222;
+    }
+  </style>
 </head>
 
 <body>
@@ -690,26 +696,28 @@
 
   
   <!-- start #main-site -->
-  <?php
-	$id = $_REQUEST['id'];
-	if (!isset($_SESSION['product'])) {
-		$_SESSION['product'] = [];
-	}
-	$count = 0;
-	if (isset($_SESSION['product'][$id])) {
-		$count = $_SESSION['product'][$id]['count'];
-	}
-	$_SESSION['product'][$id] = [
-		'item_name' => $_REQUEST['item_name'],
-		'item_price' => $_REQUEST['item_price'],
-		'count' => $count + $_REQUEST['count']
-	];
-	?>
-	<p>カートに商品を追加しました。</p>
-	<hr>
-	<?php
-	require 'cart.php';
-	?>
+  <main id="main-site">
+    <?php
+	  $id = $_REQUEST['id'];
+	  if (!isset($_SESSION['product'])) {
+	  	$_SESSION['product'] = [];
+	  }
+	  $count = 0;
+	  if (isset($_SESSION['product'][$id])) {
+	  	$count = $_SESSION['product'][$id]['count'];
+	  }
+	  $_SESSION['product'][$id] = [
+	  	'name' => $_REQUEST['name'],
+	  	'price' => $_REQUEST['price'],
+	  	'count' => $count + $_REQUEST['count']
+	  ];
+	  ?>
+	  <p>カートに商品を追加しました。</p>
+	  <hr>
+	  <?php
+	  require 'cart.php';
+	  ?>
+  </main>
  
   <!-- start #main-site -->
 

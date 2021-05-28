@@ -30,8 +30,8 @@
         </ul>
         <form class="navbar-form form-inline">
             <div class="input-group search-box">
-                <input type="text" id="search" class="form-control" placeholder="Search here...">
-                <span class="input-group-addon"><i class="material-icons">&#xE8B6;</i></span>
+                <input type="text" id="search" class="form-control" name="keyword" placeholder="Search here...">
+                <span class="input-group-addon"><i class="material-icons mt-1">&#xE8B6;</i></span>
             </div>
         </form>
         <ul class="nav navbar-nav navbar-right">

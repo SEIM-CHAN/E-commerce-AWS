@@ -493,9 +493,9 @@ $category = $_GET['category'];
       /*IE6のマージン算出のバグ対策*/
       float: left;
       /*サブメニューのカラムを左寄せにする*/
-      margin-top: 30px;
+      margin-top: 10px;
       margin-right: 30px;
-      margin-bottom: 30px;
+      margin-bottom: 0px;
     }
     
     /*サブメニューのヘッダ部分（余白調整・背景画像・背景色・文字サイズなど）*/
@@ -633,14 +633,17 @@ $category = $_GET['category'];
     tr:nth-child(even) {
       background: #d9d9d9;
     }
-    
-    #gallary ul {
+    #main {
+      width: 1500px;
+      height: 2000px;
+    }
+    .gallary ul {
       list-style: none;
       margin: 0;
       padding: 0;
     }
     
-    #gallary ul li {
+    .gallary ul li {
       width: 220px;
       margin: 0 30px 30px 0;
       padding: 10px 0;
@@ -652,18 +655,20 @@ $category = $_GET['category'];
       box-shadow: 2px 2px 3px rgba(0, 0, 0, 0.1);
     }
     
-    #gallary ui li:nth-child(3n) {
+    .gallary ui li:nth-child(3n) {
       margin-right: 0;
     }
     
     #table {
-      width: 800px;
+      width: 1000px;
     }
     
     #B {
       width: 200px;
     }
-    
+    h2 {
+      color: #242222;
+    }
     /*# sourceMappingURL=style.css.map */
 
    </style>
@@ -688,6 +693,7 @@ $category = $_GET['category'];
     <!-- start #main-site -->
     <?php require 'nav-L.php' ?>
 
+    <div id="main">
     <?php
 
         if($category == 'cpu'){
@@ -710,36 +716,36 @@ $category = $_GET['category'];
 
     ?>
 
-    <div id="main">
+      <?php
+        require 'db_connect.php';
+          $sql = "select * from product where item_category like :category";
+          $stm = $pdo->prepare($sql);
+          $stm->bindValue(':category',$category, PDO::PARAM_INT);
+          $stm->execute();
+          $result = $stm->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($result as $row) {
+        $id = $row['id'];
+      ?>
+  
+       <section class="gallary">
+           <ul>
+               <li>
+                <img src="assets/products/<?= $row['item_category'] ?>/<?= $row['item_image'] ?>" ><br>
+                <a class=" font-weight-bold text-dark text-uppercase small" href="ProductDetails.php?id=<?= $id ?>"><?= substr($row['name'],0,23) ?></a><br>
+                <?= $row['price'] ?>円
+               </li>
+           </ul>
+       </section>
+      <?php
+      }
+      ?>
+     </div>
 
-        <?php
-        
-		require 'db_connect.php';
-			$sql = "select * from product where item_category like :category";
-			$stm = $pdo->prepare($sql);
-			$stm->bindValue(':category',$category, PDO::PARAM_INT);
-			$stm->execute();
-			$result = $stm->fetchAll(PDO::FETCH_ASSOC);
-		foreach ($result as $row) {
-			$id = $row['item_id'];
-		?>
 
-    <section id="gallary">
-        <ul>
-            <li>
-             <img src="assets/products/<?= $row['item_category'] ?>/<?= $row['item_image'] ?>" ><br>
-             <a class=" font-weight-bold text-dark text-uppercase small" href="ProductDetails.php?item_id=<?= $id ?>"><?= $row['item_name'] ?></a><br>
-             <?= $row['item_price'] ?>円
-            </li>
-        </ul>
-    </section>
-    <?php
-		}
-	?>
+      
        
                         
 
-    </div>
     <!-- Owl-carousel -->
 
     <!-- Owl-carousel -->

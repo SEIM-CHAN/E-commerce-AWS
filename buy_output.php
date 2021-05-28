@@ -699,26 +699,27 @@
 		}
 		//SQL文を作成する
 		$sql = "INSERT INTO purchase VALUES(:id, :user_id)";
+    //プリペアードステートメントを作成
 	  $stm = $pdo->prepare($sql);
 	  $stm->bindValue(':id', $purchase_id, PDO::PARAM_INT);
-	  $stm->bindValue(':user_id', $_SESSION['user']['user_id'], PDO::PARAM_INT);
-	if($stm->execute()){
+	  $stm->bindValue(':user_id', $_SESSION['user']['id'], PDO::PARAM_INT);
+	  if($stm->execute()){
 		//SQL成功
 		//セッションに入っている商品の数だけpurchaase_detailに保存
-		foreach($_SESSION['product'] as $product_id => $product){
-			$sql = "INSERT INTO purchase_detail VALUES(:purchase_id, :product_id, :count)";
-			$stm = $pdo->prepare($sql);
-	  $stm->bindValue(':purchase_id',$purchase_id, PDO::PARAM_INT);
-	  $stm->bindValue(':item_id', $product_id, PDO::PARAM_INT);
-	  $stm->bindValue(':count', $product['count'], PDO::PARAM_INT);
-	  $stm->execute();
-		}
-		unset($_SESSION['product']);
-		echo '購入手続きが完了しました。ありがとうございます。';
-	}else {
+		    foreach($_SESSION['product'] as $product_id => $product){
+		    	$sql = "INSERT INTO purchase_detail VALUES(:purchase_id, :product_id, :count)";
+		    	$stm = $pdo->prepare($sql);
+	        $stm->bindValue(':purchase_id',$purchase_id, PDO::PARAM_INT);
+	        $stm->bindValue(':product_id', $product_id, PDO::PARAM_INT);
+	        $stm->bindValue(':count', $product['count'], PDO::PARAM_INT);
+	        $stm->execute();
+		    }
+		    unset($_SESSION['product']);
+		    echo '購入手続きが完了しました。ありがとうございます。';
+	  }else {
     //SQL失敗
-    echo "購入手続き中にエラーが発生しました。申し訳ございません。";
-  }
+         echo "購入手続き中にエラーが発生しました。申し訳ございません。";
+    }
 	?>
 
   <!-- start #footer -->

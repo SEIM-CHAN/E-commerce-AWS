@@ -17,8 +17,8 @@ if (!empty($_SESSION['product'])) {
 		?>  
 		   <tbody>
 			<tr>
-			 <td><a href="ProductDetails.php?id=<?= $id ?>"><?= $product['item_name'] ?></a></td>
-			 <td><?= $product['item_price'] ?>円</td>
+			 <td><a href="ProductDetails.php?id=<?= $id ?>"><?= $product['name'] ?></a></td>
+			 <td><?= $product['price'] ?>円</td>
 			 <td><?= $product['count'] ?></td>
 			 <?php
 			 $subtotal = $product['item_price'] * $product['count'];
@@ -38,7 +38,7 @@ if (!empty($_SESSION['product'])) {
 		     <td></td>
 		    </tr>
 		</table>
-		<button><a href="purchase_input.php">購入手続き</a></button>
+		<button><a href="buy_input.php">購入手続き</a></button>
 <?php
 } else {
 ?>
